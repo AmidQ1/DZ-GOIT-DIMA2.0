@@ -66,14 +66,4 @@ function loadFromFile() {
     }
 }
 
-document.getElementById('searchField').addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    const filteredStudents = students.filter(student => 
-        student.lastName.toLowerCase().includes(query) || 
-        student.courses.some(course => course.toLowerCase().includes(query))
-    );
-    
-    table(filteredStudents);
-});
-
 window.onload = loadFromFile;
