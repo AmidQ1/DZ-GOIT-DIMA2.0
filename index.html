@@ -3,11 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
 <body>
+    <h1>Student Management System</h1>
     
+    <form id="studentForm">
+        <label for="firstName">Name</label>
+        <input type="text" id="firstName" required>
+        
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" required>
+        
+        <label for="age">Age</label>
+        <input type="number" id="age" required>
+        
+        <label for="year">Year</label>
+        <input type="number" id="year" required>
+        
+        <label for="faculty">Facl</label>
+        <input type="text" id="faculty" required>
+        
+        <label for="courses">Courses</label>
+        <input type="text" id="courses" required>
+        
+        <button type="submit">Add Student</button>
+    </form>
+    
+    <h2>List</h2>
+    <input type="text" id="searchField" placeholder="Search by last name or course">
+    
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Year</th>
+                <th>Faculty</th>
+                <th>Courses</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <!-- https://css.in.ua/html/tag/thead -->
+        <tbody></tbody>
+    </table>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Student</h2>
+            <form id="editForm">
+                <input type="hidden" id="editIndex">
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
