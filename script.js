@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { // DOMContentLoaded Я знающо ми не вчили 
     const images = document.querySelectorAll('img.lazy-load');
 
 
@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         image.classList.remove('lazy-load'); 
     };
 
-    // Ініціалізація Intersection Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -19,12 +18,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     images.forEach(image => {
         observer.observe(image);
-    });
-
-
-    document.getElementById('loadImagesBtn').addEventListener('click', () => {
-        images.forEach(image => {
-            loadImage(image); 
-        });
     });
 });
