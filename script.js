@@ -18,10 +18,15 @@
 
 // // 3000
 
-const happy = new Date("11-5-2007");
-console.log(happy.getFullYear());
-console.log(happy.getMonth());
-console.log(happy.getDate());
-console.log(happy.getHours());
-console.log(happy.getMinutes());
-console.log(happy.getSeconds());
+// const happy = new Date("11-5-2007");
+// console.log(happy.getFullYear());
+// console.log(happy.getMonth());
+// console.log(happy.getDate());
+// console.log(happy.getHours());
+// console.log(happy.getMinutes());
+// console.log(happy.getSeconds());
+
+
+let a1 = new Promise(function(resolve, reject){
+    resolve(5)
+})
