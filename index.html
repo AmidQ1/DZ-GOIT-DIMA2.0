@@ -7,10 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- task 1 -->
-    <input type="text" id="taskInput" placeholder="Додати нову задачу">
-    <button id="addTaskButton">Додати</button>
-    <ul id="taskList"></ul>
+  <!-- task 1 -->
+  <input type="text" id="newTask" placeholder="Нова задача">
+  <button onclick="addTask()">Додати задачу</button>
+  <ul id="taskList"></ul>
+  
+  <!-- task 2 -->
+  <form id="userForm">
+    <input type="text" id="username" placeholder="Ім'я">
+    <input type="text" id="email" placeholder="Email">
+    <button type="button" onclick="saveForm()">Зберегти</button>
+  </form>
+  
+  <!-- task 3 -->
+  <input type="text" id="newBookmark" placeholder="URL посилання">
+  <button onclick="addBookmark()">Додати закладку</button>
+  <ul id="bookmarkList"></ul>
+  
+  <!-- task 4 -->
+  <input type="text" id="contactName" placeholder="Ім'я">
+  <input type="text" id="contactSurname" placeholder="Прізвище">
+  <input type="text" id="contactPhone" placeholder="Телефон">
+  <input type="text" id="contactEmail" placeholder="Email">
+  <button onclick="addContact()">Додати контакт</button>
+  <ul id="contactList"></ul>
     
     <script src="script.js"></script>
 </body>
