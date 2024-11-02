@@ -1,22 +1,30 @@
-document.addEventListener('DOMContentLoaded', function() { // DOMContentLoaded Я знающо ми не вчили 
-    const images = document.querySelectorAll('img.lazy-load');
+const img = () => {
+  const images = document.querySelectorAll("img.lazy-load");
 
+  const load = (img) => {
+      img.src = img.dataset.src; 
+      img.onload = () => {
+          img.classList.add('loaded'); 
+      };
+  };
 
-    const loadImage = (image) => {
-        image.src = image.dataset.src; 
-        image.classList.remove('lazy-load'); 
-    };
+  const observerOptions = {
+      root: null, 
+      threshold: 0.1, 
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                loadImage(entry.target); 
-                observer.unobserve(entry.target); 
-            }
-        });
-    });
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              load(entry.target); 
+              observer.unobserve(entry.target); 
+          }
+      });
+  }, observerOptions);
 
-    images.forEach(image => {
-        observer.observe(image);
-    });
-});
+  images.forEach(image => {
+      imageObserver.observe(image); 
+  });
+};
+
+img()
