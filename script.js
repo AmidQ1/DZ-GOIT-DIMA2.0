@@ -4,8 +4,17 @@
 //   reject("error")
 // });
 
-const pr2 = Promise.reject("error")
+// const pr2 = Promise.reject("error")
 
-pr2.catch((error) => {
-  console.log("erro", error)
+// pr2.catch((error) => {
+//   console.log("erro", error)
+// })
+
+
+const url = new URLSearchParams({
+  _limit: 25,
 })
+
+const qwe = fetch(`https://jsonplaceholder.typicode.com/comments?${url.toStrink()}`);
+
+console.log(qwe)
