@@ -1,76 +1,65 @@
-const refs = {
-    searchBox: document.getElementById('search-box'),
-    countryInfo: document.getElementById('country-info'),
-  };
-  
-  const DEBOUNCE_DELAY = 500;
-  
-  refs.searchBox.addEventListener(
-    'input',
-    _.debounce(onSearchInput, DEBOUNCE_DELAY)
-  );
-  
-  function onSearchInput(e) {
-    const query = e.target.value.trim();
-  
-    if (!query) {
+const input = document.querySelector("#search-input");
+const list = document.querySelector("#country-list");
+const info = document.querySelector("#country-info");
+const API_URL = "https://restcountries.com/v2/name";
+
+function clearMarkup() {
+  list.innerHTML = "";
+  info.innerHTML = "";
+}
+
+function renderList(countries) {
+  const markup = countries
+    .map((country) => `<li>${country.name}</li>`)
+    .join("");
+  list.innerHTML = markup;
+}
+
+function renderInfo(country) {
+  const { name, capital, population, languages, flag } = country;
+  const lang = languages.map((lang) => lang.name).join(", ");
+
+  info.innerHTML = `
+    <img src="${flag}" alt="Flag of ${name}" width="100" />
+    <p><strong>Country:</strong> ${name}</p>
+    <p><strong>Capital:</strong> ${capital}</p>
+    <p><strong>Population:</strong> ${population}</p>
+    <p><strong>Languages:</strong> ${lang}</p>
+  `;
+}
+
+function handleInput(event) {
+  const search = event.target.value.trim();
+  if (!search) {
+    clearMarkup();
+    return;
+  }
+
+  fetch(`${API_URL}/${search}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Країни нема");
+      }
+      return response.json();
+    })
+    .then((countries) => {
       clearMarkup();
-      return;
-    }
-  
-    fetch(`https://restcountries.com/v2/name/${query}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      })
-      .then(countries => {
-        if (countries.length > 10) {
-          clearMarkup();
-          PNotify.notice({
-            text: 'Too many matches found. Please enter a more specific query.',
-          });
-          return;
-        }
-  
-        if (countries.length >= 2 && countries.length <= 10) {
-          renderCountryList(countries);
-        }
-  
-        if (countries.length === 1) {
-          renderCountryDetails(countries[0]);
-        }
-      })
-      .catch(err => {
-        clearMarkup();
-        PNotify.error({ text: 'Country not found!' });
-      });
-  }
-  
-  function renderCountryList(countries) {
-    const markup = countries
-      .map(country => `<li>${country.name}</li>`)
-      .join('');
-    refs.countryInfo.innerHTML = `<ul class="country-list">${markup}</ul>`;
-  }
-  
-  function renderCountryDetails(country) {
-    const { name, capital, population, languages, flag } = country;
-    const languageList = languages.map(lang => lang.name).join(', ');
-  
-    refs.countryInfo.innerHTML = `
-      <div>
-        <h2>${name}</h2>
-        <img src="${flag}" alt="${name} flag" width="100" />
-        <p><strong>Capital:</strong> ${capital}</p>
-        <p><strong>Population:</strong> ${population}</p>
-        <p><strong>Languages:</strong> ${languageList}</p>
-      </div>
-    `;
-  }
-  
-  function clearMarkup() {
-    refs.countryInfo.innerHTML = '';
-  }
-  
+
+      if (countries.length > 10) {
+        PNotify.alert(
+          "Знайдено забагато збігів. Будь ласка, введіть більш конкретний запит"
+        );
+      } else if (countries.length > 1) {
+        renderList(countries);
+      } else {
+        renderInfo(countries[0]);
+      }
+    })
+    .catch(() => {
+      clearMarkup();
+      PNotify.error("Країни не знайдено. Введіть дійсний запит");
+    });
+}
+
+const debounc = _.debounce(handleInput, 500);
+input.addEventListener("input", debounc);
