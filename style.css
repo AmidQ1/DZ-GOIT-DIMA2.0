@@ -1,30 +1,32 @@
+/* Додатковий CSS для стилізації */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+button {
+  margin-top: 10px;
 }
 
-.gallery img {
-  width: 200px;
-  border-radius: 5px;
+form {
+  margin-bottom: 20px;
 }
 
-.load-more {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+#edit-modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  display: none;
 }
 
-.load-more:disabled {
-  background: #aaa;
+#edit-modal input {
+  margin: 10px 0;
+}
+
+#edit-modal button {
+  margin-top: 10px;
 }

@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DZ17</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Pixabay Gallery</h1>
-    <div class="gallery" id="gallery"></div>
-    <button class="load-more" id="load-more">Load More</button>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies CRUD</title>
+</head>
+<body>
+    <h1>Movies CRUD</h1>
+
+    <!-- Форма для додавання нового фільму -->
+    <h2>Додати фільм</h2>
+    <form id="add-movie-form">
+        <input type="text" id="title" placeholder="Назва фільму" required><br>
+        <input type="text" id="genre" placeholder="Жанр" required><br>
+        <input type="text" id="director" placeholder="Режисер" required><br>
+        <input type="number" id="year" placeholder="Рік" required><br>
+        <button type="submit">Додати фільм</button>
+    </form>
+
+    <!-- Кнопка для отримання всіх фільмів -->
+    <button id="get-movies">Отримати фільми</button>
+
+    <!-- Таблиця для відображення фільмів -->
+    <table id="movies-table" border="1">
+        <thead>
+            <tr>
+                <th>Назва</th>
+                <th>Жанр</th>
+                <th>Режисер</th>
+                <th>Рік</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
