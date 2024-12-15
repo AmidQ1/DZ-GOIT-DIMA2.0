@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nanoid": "^5.0.8"
+    "lodash.debounce": "^4.0.8",
+    "nanoid": "^5.0.8",
+    "parcel": "^2.13.2",
+    "pnotify": "^5.2.0"
   }
 }
